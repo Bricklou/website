@@ -1,0 +1,26 @@
+footer.footer {
+    @apply md:mx-8 py-8 border-t border-gray-300;
+
+    a {
+        @apply text-white hover:text-teal-500;
+        @apply transition-colors duration-100 ease-in-out;
+    }
+
+    .container {
+        @apply max-w-screen-lg mx-auto px-4;
+    }
+
+    .socials {
+        @apply px-16 flex max-w-xs mx-auto items-center justify-between;
+
+        a {
+            .icon {
+                @apply inline;
+            }
+        }
+    }
+
+    .credits {
+        @apply text-center text-gray-300 pt-8 sm:pt-10 font-light;
+    }
+}

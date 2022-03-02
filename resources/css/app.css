@@ -1,0 +1,23 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/variants";
+
+@import "./components/navbar.css";
+@import "./components/footer.css";
+
+body {
+    @apply bg-gray-800 relative text-white;
+}
+
+main {
+    @apply max-w-screen-lg min-h-screen flex flex-col;
+    @apply md:px-16 px-4;
+}
+
+.feather {
+    @apply w-6 h-6 stroke-current stroke-2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}

@@ -1,0 +1,36 @@
+.navbar-container {
+    @apply py-10 sm:py-14 z-30 w-full;
+}
+
+.navbar {
+    @apply container h-full mx-auto px-6 flex flex-col lg:flex-row items-center justify-center lg:justify-between;
+
+    .logo {
+        @apply text-white font-black text-3xl flex flex-row items-center;
+
+        img {
+            @apply w-12 h-12 rounded-full mr-2;
+        }
+    }
+
+    .menu {
+        @apply border-b border-white lg:border-transparent;
+        @apply py-4 w-full mx-auto max-w-screen-md lg:max-w-none;
+        @apply text-white uppercase text-lg;
+        @apply flex md:items-center flex-col md:flex-row justify-center lg:justify-end;
+
+        .link {
+            @apply py-2 px-4 mx-2 flex border-transparent;
+            @apply border-transparent md:border-b-2 border-l-2 md:border-l-0;
+            @apply transition-colors duration-100 ease-in-out;
+
+            &:hover {
+                @apply border-white;
+            }
+
+            &.active {
+                @apply border-teal-500 text-teal-500;
+            }
+        }
+    }
+}
