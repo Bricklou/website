@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Orchid\Platform\Models\User as Authenticatable;
+use App\Models\UserSocialsLinks as SocialLinks;
 
 class User extends Authenticatable
 {
@@ -63,4 +64,9 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
+    public function socialLinks()
+    {
+        return $this->hasMany(SocialLinks::class);
+    }
 }

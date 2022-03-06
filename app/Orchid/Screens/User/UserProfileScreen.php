@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use App\Models\UserSocialsLinks;
 use App\Orchid\Layouts\User\ProfilePasswordLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\UserSocialLinksLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Action;
@@ -28,8 +31,10 @@ class UserProfileScreen extends Screen
      */
     public function query(Request $request): iterable
     {
+        $user = $request->user();
+        $user->load(['roles', 'socialLinks']);
         return [
-            'user' => $request->user(),
+            'user' => $user,
         ];
     }
 
@@ -79,6 +84,18 @@ class UserProfileScreen extends Screen
                         ->method('save')
                 ),
 
+            Layout::block(UserSocialLinksLayout::class)
+                ->title(__('Social Links'))
+                ->description(__("Update your account's social links."))
+                ->commands(
+                    [
+                        Button::make(__('Save'))
+                            ->type(Color::DEFAULT())
+                            ->icon('check')
+                            ->method('updateSocialLinks'),
+                    ]
+                ),
+
             Layout::block(ProfilePasswordLayout::class)
                 ->title(__('Update Password'))
                 ->description(__('Ensure your account is using a long, random password to stay secure.'))
@@ -126,5 +143,42 @@ class UserProfileScreen extends Screen
         })->save();
 
         Toast::info(__('Password changed.'));
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function updateSocialLinks(Request $request): void
+    {
+        Log::debug($request->all());
+        $request->validate([
+            'user.socialLinks' => 'required|array',
+            'user.socialLinks.*.social_network' => [
+                'required',
+                Rule::in(array_keys(UserSocialsLinks::$SOCIAL_LINKS)),
+            ],
+            'user.socialLinks.*.social_link' => 'required|url',
+        ]);
+
+        $keyToNotDelete = [];
+        $objs = [];
+
+        foreach ($request->get('user')['socialLinks'] as $item) {
+            if (isset($item['social_link']) && $item['social_link'] !== '') {
+                $objs[] = [
+                    'user_id' => $request->user()->id,
+                    'social_network' => $item['social_network'],
+                    'social_link' => $item['social_link'],
+                ];
+            } else {
+                $keyToNotDelete[] = $item['social_network'];
+            }
+        }
+
+        $request->user()->socialLinks()->whereNotIn('social_network', $keyToNotDelete)->delete();
+        $request->user()->socialLinks()
+            ->upsert($objs, ["social_network", "user_id"], ['social_link']);
+
+        Toast::info("Social Links updated");
     }
 }

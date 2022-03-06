@@ -10,6 +10,7 @@ use App\Orchid\Layouts\User\UserPasswordLayout;
 use App\Orchid\Layouts\User\UserRoleLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 use Orchid\Access\UserSwitch;
 use Orchid\Platform\Models\User;
@@ -163,10 +164,17 @@ class UserEditScreen extends Screen
     public function save(User $user, Request $request)
     {
         $request->validate([
+            'user.name' => [
+                'required',
+                Rule::unique(User::class, 'name')->ignore($user),
+            ],
             'user.email' => [
                 'required',
                 Rule::unique(User::class, 'email')->ignore($user),
             ],
+            'user.email_verified' => [
+                'boolean',
+            ]
         ]);
 
         $permissions = collect($request->get('permissions'))
@@ -177,6 +185,7 @@ class UserEditScreen extends Screen
             ->toArray();
 
         $userData = $request->get('user');
+
         if ($user->exists && (string) $userData['password'] === '') {
             // When updating existing user null password means "do not change current password"
             unset($userData['password']);
@@ -184,10 +193,15 @@ class UserEditScreen extends Screen
             $userData['password'] = Hash::make($userData['password']);
         }
 
+        $verified = $request->boolean('user.email_verified', false);
+
         $user
             ->fill($userData)
             ->fill([
                 'permissions' => $permissions,
+            ])
+            ->forceFill([
+                'email_verified_at' => $verified ? now() : null,
             ])
             ->save();
 

@@ -3,12 +3,16 @@
 namespace App\Orchid\Screens\User;
 
 use Orchid\Screen\Screen;
-use Orchid\Platform\Models\User;
+use App\Models\User;
+use App\Models\UserSocialsLinks;
 use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Layout;
-use Orchid\Support\Color;
 use Orchid\Screen\Sight;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Matrix;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\TD;
 
 class UserViewScreen extends Screen
 {
@@ -25,9 +29,10 @@ class UserViewScreen extends Screen
      */
     public function query(User $user): iterable
     {
-        $user->load(['roles']);
+        $user->load(['roles', 'socialLinks']);
         return [
             'user' => $user,
+            'socialLinks' => $user->socialLinks,
         ];
     }
 
@@ -81,7 +86,16 @@ class UserViewScreen extends Screen
                 }),
                 Sight::make('created_at', 'Created'),
                 Sight::make('updated_at', 'Updated'),
+                Sight::make('socialLinks', 'Linked socials networks')->render(function (User $user) {
+                    return view('orchid.socialItemsList', [
+                        'socialLinks' => $user->socialLinks->map(function ($item) {
+                            $item->social_network = UserSocialsLinks::$SOCIAL_LINKS[$item->social_network];
+                            return $item;
+                        })
+                    ]);
+                }),
             ])->title('User'),
+
         ];
     }
 }
