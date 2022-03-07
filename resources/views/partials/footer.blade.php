@@ -1,17 +1,12 @@
 <footer class="footer">
     <div class="container">
         <div class="socials">
-            <a href="{{ env('GITHUB_LINK', '') }}">
-                @include('components.icon', ['iconName' => 'github'])
-                <span>Github</span>
-            </a>
-
-            <a href="{{ env('YOUTUBE_LINK', '') }}">
-                @include('components.icon', [
-                    'iconName' => 'youtube',
-                ])
-                <span>Youtube</span>
-            </a>
+            @foreach ($owner_socials as $social)
+                <a href="{{ $social['link'] }}" target="_blank">
+                    @include('components.icon', ['iconName' => $social['network']])
+                    <span>{{ $social['name'] }}</span>
+                </a>
+            @endforeach
         </div>
 
         <div class="credits">

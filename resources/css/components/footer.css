@@ -11,11 +11,12 @@ footer.footer {
     }
 
     .socials {
-        @apply px-16 flex max-w-xs mx-auto items-center justify-between;
+        @apply px-16 flex mx-auto items-center justify-between;
 
         a {
+            @apply max-w-xs;
             .icon {
-                @apply inline;
+                @apply inline w-6 h-6;
             }
         }
     }
