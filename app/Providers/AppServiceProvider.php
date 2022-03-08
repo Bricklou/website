@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use App\Models\UserSocialsLinks;
 use Illuminate\Support\ServiceProvider;
+use Orchid\Support\Facades\Dashboard;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Dashboard $dashboard)
     {
         $links = [];
 

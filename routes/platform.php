@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\Posts\PostsListScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;

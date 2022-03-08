@@ -8,7 +8,6 @@ use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
 use Orchid\Screen\Actions\Menu;
-use Orchid\Support\Color;
 
 class PlatformProvider extends OrchidServiceProvider
 {
@@ -18,8 +17,6 @@ class PlatformProvider extends OrchidServiceProvider
     public function boot(Dashboard $dashboard): void
     {
         parent::boot($dashboard);
-
-        // ...
     }
 
     /**
@@ -62,6 +59,9 @@ class PlatformProvider extends OrchidServiceProvider
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users')),
+            ItemPermission::group(__('Posts'))
+                ->addPermission('manage_posts', __('Manage posts'))
+                ->addPermission('manage_categories', __('Manage categories')),
         ];
     }
 }

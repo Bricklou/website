@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Orchid\Platform\Models\User as Authenticatable;
 use App\Models\UserSocialsLinks as SocialLinks;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
+    use Searchable;
+
     /**
      * The attributes that are mass assignable.
      *

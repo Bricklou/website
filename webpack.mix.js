@@ -13,3 +13,5 @@ const mix = require('laravel-mix');
 
 mix.postCss('resources/css/app.css', 'public/css')
 .copy('./node_modules/feather-icons/dist/feather-sprite.svg', 'public/images');
+
+mix.js('resources/js/ckeditor.js', 'public/js')

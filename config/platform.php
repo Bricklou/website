@@ -110,7 +110,9 @@ return [
 
     'resource' => [
         'stylesheets' => [],
-        'scripts'     => [],
+        'scripts'     => [
+            '/js/ckeditor.js',
+        ],
     ],
 
     /*
@@ -190,7 +192,8 @@ return [
     */
 
     'search' => [
-        // \App\Models\User::class
+        \App\Models\User::class,
+        \App\Models\Post::class,
     ],
 
     /*
