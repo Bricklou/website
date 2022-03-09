@@ -21,6 +21,12 @@
                 Posts
             </a>
 
+            @auth
+                <a href="{{ route('platform.main') }}" class="link">
+                    Administration
+                </a>
+            @endauth
+
         </nav>
     </div>
 </header>

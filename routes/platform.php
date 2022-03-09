@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 use App\Orchid\Screens\PlatformScreen;
-use App\Orchid\Screens\Posts\PostsListScreen;
+use App\Orchid\Screens\Posts\PostEditScreen;
+use App\Orchid\Screens\Posts\PostListScreen;
+use App\Orchid\Screens\Posts\PostViewScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -98,4 +100,37 @@ Route::screen('roles', RoleListScreen::class)
         return $trail
             ->parent('platform.index')
             ->push(__('Roles'), route('platform.systems.roles'));
+    });
+
+
+// Plateform > Posts
+Route::screen('posts', PostListScreen::class)
+    ->name('platform.systems.posts')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail->parent('platform.index')
+            ->push(__('Posts'), route('platform.systems.posts'));
+    });
+
+// Platform > Posts > Create
+Route::screen('post/create', PostEditScreen::class)
+    ->name('platform.systems.posts.create')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail->parent('platform.systems.posts')
+            ->push(__('Create'), route('platform.systems.posts.create'));
+    });
+
+// Platform > Posts > Edit
+Route::screen('post/{post}/edit', PostEditScreen::class)
+    ->name('platform.systems.posts.edit')
+    ->breadcrumbs(function (Trail $trail, $post) {
+        return $trail->parent('platform.systems.posts')
+            ->push(__('Edit'), route('platform.systems.posts.edit', $post));
+    });
+
+// Platform > Posts > View
+Route::screen('post/{post}', PostViewScreen::class)
+    ->name('platform.systems.posts.view')
+    ->breadcrumbs(function (Trail $trail, $post) {
+        return $trail->parent('platform.systems.posts')
+            ->push(__('View'), route('platform.systems.posts.view', $post));
     });

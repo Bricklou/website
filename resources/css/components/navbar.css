@@ -14,7 +14,6 @@
     }
 
     .menu {
-        @apply border-b border-white lg:border-transparent;
         @apply py-4 w-full mx-auto max-w-screen-md lg:max-w-none;
         @apply text-white uppercase text-lg;
         @apply flex md:items-center flex-col md:flex-row justify-center lg:justify-end;

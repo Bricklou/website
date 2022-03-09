@@ -25,6 +25,9 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerMainMenu(): array
     {
         return [
+            Menu::make(__('Back to site'))
+                ->icon('home')
+                ->route('home'),
             Menu::make(__('Users'))
                 ->icon('user')
                 ->route('platform.systems.users')
@@ -35,6 +38,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('lock')
                 ->route('platform.systems.roles')
                 ->permission('platform.systems.roles'),
+
+            Menu::make(__('Posts'))
+                ->icon('notebook')
+                ->route('platform.systems.posts')
+                ->permission('manage_posts')
         ];
     }
 

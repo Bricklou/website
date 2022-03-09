@@ -9,6 +9,7 @@ use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use PhpParser\Node\Expr\AssignOp\Pow;
 
 class RoleListScreen extends Screen
 {
@@ -31,7 +32,7 @@ class RoleListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Manage roles';
+        return 'Roles';
     }
 
     /**
@@ -41,7 +42,7 @@ class RoleListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Access rights';
+        return 'Manage roles access rights';
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Presenters;
 
+use Illuminate\Support\Facades\Log;
 use Laravel\Scout\Builder;
 use Orchid\Screen\Contracts\Searchable;
 use Orchid\Support\Presenter;
@@ -37,10 +38,7 @@ class PostPresenter extends Presenter implements Searchable
      */
     public function url(): string
     {
-        return route('platform.resource.view', [
-            'resource' => 'post-resources',
-            'id' => $this->entity->id,
-        ]);
+        return route('platform.systems.posts.view', $this->entity);
     }
 
     /**
@@ -66,6 +64,7 @@ class PostPresenter extends Presenter implements Searchable
      */
     public function searchQuery(?string $query = null): Builder
     {
+        $this->entity->load(['user']);
         return $this->entity->search($query);
     }
 }

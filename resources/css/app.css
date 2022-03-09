@@ -7,11 +7,12 @@
 @import "./components/footer.css";
 
 body {
-    @apply bg-gray-800 relative text-white;
+    @apply bg-gray-800 relative text-white min-h-screen;
+    @apply flex flex-col;
 }
 
 main {
-    @apply max-w-screen-lg min-h-screen flex flex-col;
+    @apply max-w-screen-lg flex flex-col md:mx-auto;
     @apply md:px-16 px-4;
 }
 
