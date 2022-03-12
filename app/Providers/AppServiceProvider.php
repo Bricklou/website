@@ -25,22 +25,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dashboard $dashboard)
     {
-        $links = [];
+        if (!app()->runningInConsole()) {
+            $links = [];
 
-        $user = User::query()->whereHas('roles', function ($query) {
-            $query->where('slug', '=', 'admin');
-        })->first();
+            $user = User::query()->whereHas('roles', function ($query) {
+                $query->where('slug', '=', 'admin');
+            })->first();
 
-        if ($user) {
-            foreach ($user->socialLinks as $social) {
-                array_push($links, [
-                    'network' => $social->social_network,
-                    'link' => $social->social_link,
-                    'name' => UserSocialsLinks::$SOCIAL_LINKS[$social->social_network],
-                ]);
+            if ($user) {
+                foreach ($user->socialLinks as $social) {
+                    array_push($links, [
+                        'network' => $social->social_network,
+                        'link' => $social->social_link,
+                        'name' => UserSocialsLinks::$SOCIAL_LINKS[$social->social_network],
+                    ]);
+                }
             }
-        }
 
-        view()->share('owner_socials', $links);
+            view()->share('owner_socials', $links);
+        }
     }
 }
