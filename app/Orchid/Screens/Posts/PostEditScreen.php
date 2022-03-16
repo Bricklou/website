@@ -6,9 +6,7 @@ use App\Models\Post;
 use App\Orchid\Layouts\Posts\PostEditLayout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
-use Orchid\Support\Facades\Layout as FacadesLayout;
 use Orchid\Support\Facades\Toast;
 
 class PostEditScreen extends Screen
@@ -103,26 +101,30 @@ class PostEditScreen extends Screen
     /**
      * @param Post $post
      * @param Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function save(Post $post, Request $request)
     {
+        $creating = !$post->exists;
         $request->validate([
             'post.title' => 'required|max:255',
-            'post.slug' => 'required|max:255',
+            'post.slug' => 'required|max:255|unique:posts,slug',
             'post.content' => 'required',
             'post.published_at' => 'nullable|date_format:Y-m-d H:i:s',
         ]);
 
-        $post->forceFill($request->all()['post']);
+        $p = $request->all()['post'];
+        $p['user_id'] = auth()->user()->id;
+
+        $post->forceFill($p);
         $post->save();
 
         Toast::info(__('Post saved'));
 
-        return redirect()->route('platform.systems.posts.view', [
-            'post' => $post->id,
-        ]);
+        if ($creating) {
+            return redirect()->route('platform.systems.posts.view', [
+                'post' => $post->id,
+            ]);
+        }
     }
 
     /**

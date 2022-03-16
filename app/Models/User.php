@@ -4,7 +4,11 @@ namespace App\Models;
 
 use Orchid\Platform\Models\User as Authenticatable;
 use App\Models\UserSocialsLinks as SocialLinks;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Laravel\Scout\Searchable;
+use Orchid\Platform\Dashboard;
+use Orchid\Platform\Models\Role;
 
 class User extends Authenticatable
 {
@@ -71,5 +75,25 @@ class User extends Authenticatable
     public function socialLinks()
     {
         return $this->hasMany(SocialLinks::class);
+    }
+
+    /**
+     * @param string $name
+     * @param string $email
+     * @param string $password
+     *
+     * @return User
+     * @throws \Throwable
+     */
+    public static function createAdmin(string $name, string $email, string $password)
+    {
+        throw_if(static::where('email', $email)->exists(), 'User exist');
+
+        return static::create([
+            'name'        => $name,
+            'email'       => $email,
+            'password'    => Hash::make($password),
+            'permissions' => [],
+        ]);
     }
 }
