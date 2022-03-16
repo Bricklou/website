@@ -5,6 +5,7 @@ namespace App\Orchid\Screens\Posts;
 use App\Models\Post;
 use App\Orchid\Layouts\Posts\PostEditLayout;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
@@ -80,6 +81,7 @@ class PostEditScreen extends Screen
 
             Button::make($post_published ? __('Unpublish') : __('Save and publish'))
                 ->icon('eye')
+                ->confirm($post_published ? __("Are you sure you want to unpublish this post?") : __("Are you sure you want to save and publish this post?"))
                 ->method('publish', [
                     'state' => !$post_published,
                 ]),
@@ -107,7 +109,10 @@ class PostEditScreen extends Screen
         $creating = !$post->exists;
         $request->validate([
             'post.title' => 'required|max:255',
-            'post.slug' => 'required|max:255|unique:posts,slug',
+            'post.slug' => [
+                'required', 'max:255',
+                Rule::unique('posts', 'slug')->ignore($post->id),
+            ],
             'post.content' => 'required',
             'post.published_at' => 'nullable|date_format:Y-m-d H:i:s',
         ]);
@@ -152,10 +157,9 @@ class PostEditScreen extends Screen
     public function publish(Post $post, Request $request)
     {
         $data = $request->all();
-        $post->published_at = $data['state'] ? now() : null;
-        unset($data['state']);
 
-        $post->forceFill($data);
+        $post->forceFill($data['post']);
+        $post->published_at = $data['state'] ? now() : null;
         $post->save();
 
         Toast::info($request->get('state') ? __('Post published') : __('Post unpublished'));

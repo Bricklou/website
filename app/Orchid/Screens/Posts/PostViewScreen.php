@@ -52,8 +52,17 @@ class PostViewScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make(isset($this->post->published_at) ? __('Unpublish') : __('Publish'))
+            Button::make(
+                isset($this->post->published_at)
+                    ? __('Unpublish')
+                    : __('Publish')
+            )
                 ->icon('eye')
+                ->confirm(
+                    isset($this->post->published_at)
+                        ? __('Are you sure you want to unpublish this post?')
+                        : __('Are you sure you want to publish this post?')
+                )
                 ->method('publishPost', [
                     'id' => $this->post->id,
                     'published' => !isset($this->post->published_at)
