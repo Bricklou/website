@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="rounded-sm shadow-lg bg-white px-2 py-4 md:p-8 text-black">
+    <div class="rounded-sm shadow-lg bg-white px-2 py-4 md:p-8 mb-12 text-black">
         <header class="mb-4 flex flex-col md:flex-row md:items-center mx-4 md:mx-0">
             <h1 class="text-4xl font-bold mb-2 md:mb-0 flex-1">{{ $post->title }}</h1>
 
