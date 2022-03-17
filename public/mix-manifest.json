@@ -1,5 +1,7 @@
 {
     "/js/ckeditor.js": "/js/ckeditor.js",
+    "/js/highlight.js": "/js/highlight.js",
+    "/css/orchid-custom.css": "/css/orchid-custom.css",
     "/css/app.css": "/css/app.css",
     "/images/feather-sprite.svg": "/images/feather-sprite.svg"
 }

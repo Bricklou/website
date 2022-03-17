@@ -26,6 +26,8 @@
     </main>
 
     @include('partials.footer')
+
+    <script src="{{ mix('js/highlight.js') }}" defer></script>
 </body>
 
 </html>

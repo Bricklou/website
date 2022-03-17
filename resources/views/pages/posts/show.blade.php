@@ -8,7 +8,7 @@
             <p class="italic text-sm text-gray-900 ml-2 md:ml-0">Publié le {{ $post->published_at }}</p>
         </header>
 
-        <div class="my-8 mx-2 md:mx-8">
+        <div class="my-8 mx-2 md:mx-8 content">
             {!! $post->content !!}
 
         </div>

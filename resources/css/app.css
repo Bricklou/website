@@ -5,6 +5,7 @@
 
 @import "./components/navbar.css";
 @import "./components/footer.css";
+@import "./components/code.css";
 
 body {
     @apply bg-gray-800 relative text-white min-h-screen;

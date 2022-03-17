@@ -1,0 +1,18 @@
+{
+    "plugins": [
+        [
+            "prismjs",
+            {
+                "languages": "all",
+                "plugins": [
+                    "autolinker",
+                    "copy-to-clipboard",
+                    "diff-highlight",
+                    "line-numbers"
+                ],
+                "theme": "okaidia",
+                "css": true
+            }
+        ]
+    ]
+}

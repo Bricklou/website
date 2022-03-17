@@ -109,9 +109,12 @@ return [
     */
 
     'resource' => [
-        'stylesheets' => [],
+        'stylesheets' => [
+            '/css/orchid-custom.css',
+        ],
         'scripts'     => [
             '/js/ckeditor.js',
+            '/js/highlight.js',
         ],
     ],
 
