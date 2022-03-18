@@ -39,6 +39,8 @@ RUN npm set progress=false && \
     npm run production && \
     rm -rf node_modules
 
+COPY /app /app
+
 # ========
 # PHP base
 # ========

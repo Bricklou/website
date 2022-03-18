@@ -16,6 +16,18 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:image" content="{{ url('/images/avatar_x2048.png') }}">
+    <meta property="og:url" content="{{ URL::full() }}" />
+
+    @yield('head')
+    @sectionMissing('head')
+        <meta property="og:title" content="{{ env('APP_NAME') }}" />
+        <meta property="og:description"
+            content="Bienvenu sur mon site perso, vous y retrouverez des publications à propos de mes différents projets." />
+        <meta property="og:type" content="website" />
+    @endif
 </head>
 
 <body>
