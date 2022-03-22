@@ -13,13 +13,12 @@
             <h1 class="text-4xl font-bold mb-2 md:mb-0 flex-1">{{ $post->title }}</h1>
 
             <p class="italic text-sm text-gray-900 ml-2 md:ml-0">
-                Publié le {{ $post->published_at->format('Y-m-d H:i') }}
+                Publié le {{ $post->published_at->format('d/m/y à H:i') }}
             </p>
         </header>
 
         <div class="my-8 mx-2 md:mx-8 content">
             {!! $post->content !!}
-
         </div>
     </div>
 @endsection

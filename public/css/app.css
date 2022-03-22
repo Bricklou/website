@@ -879,6 +879,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .max-w-screen-lg {
   max-width: 1024px;
 }
+.max-w-none {
+  max-width: none;
+}
 .max-w-xs {
   max-width: 20rem;
 }
@@ -1816,6 +1819,7 @@ footer.footer .credits {
 }
 .content {
   max-width: none;
+  text-align: justify;
 }
 .content code {
         background-color: hsla(0, 0%, 78%, 0.3);

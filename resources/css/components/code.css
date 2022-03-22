@@ -1,5 +1,5 @@
 .content {
-    @apply prose max-w-none;
+    @apply prose max-w-none text-justify;
 
     code {
         background-color: hsla(0, 0%, 78%, 0.3);
