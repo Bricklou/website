@@ -5,10 +5,12 @@ namespace App\Orchid\Screens\Posts;
 use App\Models\Post;
 use App\Orchid\Layouts\Posts\PostEditLayout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
+use Pandoc\Pandoc;
 
 class PostEditScreen extends Screen
 {
@@ -70,6 +72,10 @@ class PostEditScreen extends Screen
     {
         $post_published = $this->post->exists && isset($this->post->published_at);
         return [
+            Button::make(__('Download PDF'))
+                ->icon('arrow-down-circle')
+                ->method('download')
+                ->disabled(!$this->post->exists),
             Button::make(__('Remove'))
                 ->icon('trash')
                 ->confirm(__('Are you sure you want to delete this post?'))
@@ -167,5 +173,28 @@ class PostEditScreen extends Screen
         return redirect()->route('platform.systems.posts.view', [
             'post' => $post->id,
         ]);
+    }
+
+    /**
+     * @param Post $post
+     * @param Request $request
+     */
+    public function download(Post $post, Request $request)
+    {
+        try {
+            $outputFile = 'pdfs/' . $post->slug . '.pdf';
+
+            (new Pandoc())
+                ->from('html')
+                ->input($post->content)
+                ->to('pdf')
+                ->output(storage_path($outputFile))
+                ->option('shell-escape')
+                ->run();
+
+            return Storage::download($outputFile);
+        } catch (\Exception $e) {
+            return Toast::error("Failed to generate PFD: " . $e->getMessage());
+        }
     }
 }

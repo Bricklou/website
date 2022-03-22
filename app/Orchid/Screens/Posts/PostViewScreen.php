@@ -5,13 +5,14 @@ namespace App\Orchid\Screens\Posts;
 use App\Models\Post;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Fields\Label;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
+use Pandoc\Pandoc;
 
 class PostViewScreen extends Screen
 {
@@ -52,6 +53,11 @@ class PostViewScreen extends Screen
     public function commandBar(): iterable
     {
         return [
+            Button::make(__('Download PDF'))
+                ->icon('arrow-down-circle')
+                ->method('download')
+                ->disabled(!$this->post->exists)
+                ->rawClick(),
             Button::make(
                 isset($this->post->published_at)
                     ? __('Unpublish')
@@ -130,5 +136,40 @@ class PostViewScreen extends Screen
         $post->save();
 
         Toast::info($published ? __('Post published') : __('Post unpublished'));
+    }
+
+    /**
+     * @param Post $post
+     * @param Request $request
+     */
+    public function download(Post $post, Request $request)
+    {
+        try {
+            $outputFile = 'public/pdfs/' . $post->slug . '.pdf';
+            $path = Storage::path($outputFile);
+            $parent_path = dirname($path);
+
+            if (!file_exists($parent_path)) {
+                mkdir($parent_path, 0777, true);
+            } else if (!is_dir($parent_path)) {
+                unlink($parent_path);
+                mkdir($parent_path, 0777, true);
+            }
+
+            (new Pandoc())
+                ->from('html')
+                ->input($post->content)
+                ->to('latex')
+                ->option('pdf-engine', '/usr/bin/pdflatex')
+                ->output($path)
+                ->run();
+
+            Toast::success('PDF file generated. Downloading...');
+            return Storage::download($outputFile, basename($outputFile), [
+                "Content-Disposition: attachment"
+            ]);
+        } catch (\Exception $e) {
+            Toast::error("Failed to generate PDF: " . $e->getMessage());
+        }
     }
 }
