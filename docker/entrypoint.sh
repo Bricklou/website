@@ -5,7 +5,7 @@ find /var/www/html/ -mindepth 1 \
     ! -regex "public/storage\(/.*\)?" \
     ! -regex "vendor\(/.*\)?" \
     -delete
-cp -a /app/. /var/www/html/
+cp -RT /www/ /var/www/html/
 chown -R www-data:www-data /var/www/html/
 
 php artisan storage:link
