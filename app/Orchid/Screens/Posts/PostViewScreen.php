@@ -156,9 +156,14 @@ class PostViewScreen extends Screen
                 mkdir($parent_path, 0777, true);
             }
 
+            $file_path = $parent_path . '/' . $post->slug . '.html';
+            $file = fopen($file_path, 'w');
+            fwrite($file, $post->content);
+            fclose($file);
+
             (new Pandoc())
                 ->from('html')
-                ->input($post->content)
+                ->inputFile($file_path)
                 ->to('latex')
                 ->option('pdf-engine', '/usr/bin/pdflatex')
                 ->output($path)

@@ -876,6 +876,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-5 {
   width: 1.25rem;
 }
+.w-64 {
+  width: 16rem;
+}
+.min-w-full {
+  min-width: 100%;
+}
 .max-w-screen-lg {
   max-width: 1024px;
 }
@@ -917,6 +923,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .gap-y-4 {
   row-gap: 1rem;
+}
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .rounded-full {
   border-radius: 9999px;
@@ -1206,6 +1217,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:items-center {
     align-items: center;
+  }
+
+  .md\:space-x-4 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .md\:border-b-2 {

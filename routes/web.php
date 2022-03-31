@@ -15,9 +15,7 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
+Route::get('/', [PostsController::class, 'home'])->name('home');
 
 Route::prefix('/posts')
     ->name('posts.')

@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    public function home(Request $request)
+    {
+        $post = Post::query()
+            ->where('published_at', '!=', null)
+            ->orderBy('published_at', 'desc')
+            ->first();
+
+        return view('pages.home', [
+            'post' => $post
+        ]);
+    }
+
     public function index(Request $request)
     {
         $posts = Post::query()
