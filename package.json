@@ -22,6 +22,6 @@
         "@tailwindcss/typography": "^0.5.2",
         "ckeditor5-custom-build": "github:Bricklou/ckeditor5-custom",
         "feather-icons": "^4.28.0",
-        "prismjs": "^1.27.0"
+        "prismjs": "^1.28.0"
     }
 }
