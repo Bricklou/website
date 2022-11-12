@@ -1,7 +1,7 @@
 # ==========
 # PHP builder
 # ==========
-FROM php:8-fpm-bullseye as php_base
+FROM php:8.2.0RC6-fpm-bullseye as php_base
 
 ENV APP_DEBUG=false
 ENV APP_ENV=production
