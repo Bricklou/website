@@ -21,7 +21,7 @@
     "dependencies": {
         "@tailwindcss/typography": "^0.5.4",
         "ckeditor5-custom-build": "github:Bricklou/ckeditor5-custom",
-        "feather-icons": "^4.29.0",
+        "feather-icons": "^4.29.1",
         "prismjs": "^1.27.0"
     }
 }
