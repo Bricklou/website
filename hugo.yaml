@@ -1,7 +1,24 @@
 baseURL: https://bricklou.ovh/
 languageCode: fr-fr
 title: Bricklou & Co
+theme: bricklou
 
 module:
   imports:
-    - path: bricklou
+    - path: "github.com/hugomods/hugopress"
+    - path: "github.com/hugomods/icons/vendors/lucide"
+    - path: "github.com/hugomods/icons/vendors/simple-icons"
+    - path: "github.com/hugomods/images"
+    - path: "github.com/hugomods/mermaid"
+    - path: "github.com/hugomods/katex"
+    - path: "github.com/hugomods/plausible-analytics"
+    - path: "github.com/hugomods/code-block-panel"
+    # SEO
+    - path: "github.com/hugomods/seo/modules/base"
+    - path: "github.com/hugomods/seo/modules/alternatives"
+    - path: "github.com/hugomods/seo/modules/favicons"
+    - path: "github.com/hugomods/seo/modules/open-graph"
+    - path: "github.com/hugomods/seo/modules/schema"
+    - path: "github.com/hugomods/seo/modules/twitter-cards"
+
+    - path: "github.com/hugomods/shortcodes"
