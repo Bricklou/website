@@ -1,0 +1,67 @@
+{{- /*
+  Renders a menu for the given menu ID.
+
+  @context {page} page The current page.
+  @context {string} menuID The menu ID.
+
+  @example: {{ partial "menu.html" (dict "menuID" "main" "page" .)
+}}
+*/}}
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+
+{{- with index site.Menus $menuID }}
+  <nav>
+    <ul
+      class="flex md:items-center flex-row justify-center lg:justify-end text-white uppercase text-lg gap-4"
+    >
+      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+    </ul>
+  </nav>
+{{- end }}
+
+{{- define "partials/inline/menu/walk.html" }}
+  {{- $page := .page }}
+  {{- range .menuEntries }}
+    {{- $attrs := dict
+      "href" .URL
+      "class" "whitespace-nowrap block w-full py-2 px-2 border-b-2"
+    }}
+
+    {{- if $page.IsMenuCurrent .Menu . }}
+      {{- $attrs = merge $attrs (dict
+        "class" (delimit (slice $attrs.class "border-teal-500 text-teal-500") " ")
+        "aria-current" "page"
+        )
+      }}
+    {{- else if $page.HasMenuCurrent .Menu . }}
+      {{- $attrs = merge $attrs (dict
+        "class" (delimit (slice $attrs.class "ancestor") " ")
+        "aria-current" "true"
+        )
+      }}
+    {{- else }}
+      {{- $attrs = merge $attrs (dict
+        "class" (delimit (slice $attrs.class "border-transparent hover:border-white") " ")
+        )
+      }}
+    {{- end }}
+
+
+    <li class="transition-colors duration-100 ease-in-out">
+      <a
+        {{- range $k, $v := $attrs }}
+          {{- with $v }}
+            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+          {{- end }}
+        {{- end -}}
+        >{{ or (T .Identifier) .Name | safeHTML }}</a
+      >
+      {{- with .Children }}
+        <ul>
+          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+        </ul>
+      {{- end }}
+    </li>
+  {{- end }}
+{{- end }}

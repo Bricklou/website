@@ -1,0 +1,23 @@
+<header class="py-10 sm:py-14 z-30 w-full">
+  <div
+    class="container h-full mx-auto px-6 flex flex-col lg:flex-row items-center justify-center lg:justify-between"
+  >
+    <a
+      href="/"
+      class="text-white font-black text-3xl flex flex-row items-center gap-2"
+    >
+      {{- with resources.Get "images/logo.svg" }}
+        <img
+          src="{{ .RelPermalink }}"
+          alt="{{ site.Title }}"
+          class="w-12 h-12 rounded-full"
+        />
+      {{- end }}
+      <span class="whitespace-nowrap">{{ site.Title }}</span>
+    </a>
+
+    <nav class="py-4 w-full mx-auto max-w-screen-md lg:max-w-none">
+      {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    </nav>
+  </div>
+</header>

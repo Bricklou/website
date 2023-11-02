@@ -1,11 +1,26 @@
 baseURL: https://bricklou.ovh/
 languageCode: fr-fr
 title: Bricklou & Co
-theme: bricklou
+
+params:
+  github_url: https://github.com/bricklou
+
+menus:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Posts
+      pageRef: /posts
+      weight: 20
+    - name: Tags
+      pageRef: /tags
+      weight: 30
 
 module:
   imports:
     - path: "github.com/hugomods/hugopress"
+    - path: "github.com/hugomods/shortcodes"
     - path: "github.com/hugomods/icons/vendors/lucide"
     - path: "github.com/hugomods/icons/vendors/simple-icons"
     - path: "github.com/hugomods/images"
@@ -21,4 +36,5 @@ module:
     - path: "github.com/hugomods/seo/modules/schema"
     - path: "github.com/hugomods/seo/modules/twitter-cards"
 
-    - path: "github.com/hugomods/shortcodes"
+build:
+  writeStats: true

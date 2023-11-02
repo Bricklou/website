@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/variants";
+
+.hi-svg-inline {
+  vertical-align: -0.125rem;
+}
