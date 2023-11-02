@@ -3,5 +3,7 @@
 <meta name="theme-color" content="#ffffff" />
 {{- partial "hugopress/head-begin.html" . }}
 <title>{{- block "title" . -}}{{ .Title }}{{- end -}}</title>
-{{- partial "hugopress/head-end.html" . }} {{ partialCached "head/css.html" . }}
+{{- partial "hugopress/head-end.html" . }}
+
+{{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}

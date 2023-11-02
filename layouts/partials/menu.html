@@ -36,7 +36,7 @@
       }}
     {{- else if $page.HasMenuCurrent .Menu . }}
       {{- $attrs = merge $attrs (dict
-        "class" (delimit (slice $attrs.class "ancestor") " ")
+        "class" (delimit (slice $attrs.class "ancestor border-transparent hover:border-white") " ")
         "aria-current" "true"
         )
       }}

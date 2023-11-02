@@ -1,7 +1,19 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
+  <h1 class="text-3xl md:text-4xl font-bold flex-1 mb-8">
+    Ma dernière publication
+  </h1>
+
+  {{ range first 1 (where .Site.RegularPages.ByDate.Reverse "Section" "posts") }}
+    <div>
+      <div class="flex flex-col lg:flex-row md:space-x-4 w-full">
+        {{ partial "partials/card" . }}
+      </div>
+    </div>
+  {{ else }}
+    <div
+      class="rounded-md shadow-lg bg-gray-100 px-2 py-4 md:p-8 mb-12 text-gray-900 flex-1 flex flex-col md:flex-row gap-4"
+    >
+      Pas de publication pour le moment
+    </div>
   {{ end }}
 {{ end }}
