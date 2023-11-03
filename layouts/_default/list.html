@@ -1,8 +1,15 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  <header>
+    <h1 class="text-4xl font-bold mb-4 flex-1">
+      {{ .Title }}
+    </h1>
+  </header>
+
+  <div class="container my-8 px-4">
+    {{ .Content }}
+  </div>
+
   {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
+    {{ partial "partials/card" . }}
   {{ end }}
 {{ end }}
