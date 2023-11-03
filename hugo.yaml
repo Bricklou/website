@@ -4,10 +4,14 @@ title: Bricklou & Co
 
 params:
   github_url: https://github.com/bricklou
+  plausible_analytics:
+    outbound_links: true
+
+paginate: 1
 
 menus:
   main:
-    - name: Home
+    - name: Accueil
       pageRef: /
       weight: 10
     - name: Posts
@@ -24,7 +28,6 @@ module:
     - path: "github.com/hugomods/mermaid"
     - path: "github.com/hugomods/katex"
     - path: "github.com/hugomods/plausible-analytics"
-    - path: "github.com/hugomods/code-block-panel"
     # SEO
     - path: "github.com/hugomods/seo/modules/base"
     - path: "github.com/hugomods/seo/modules/alternatives"
