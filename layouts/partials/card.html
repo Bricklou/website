@@ -9,11 +9,11 @@
     <img
       src="{{ $img.RelPermalink }}"
       alt="{{ .Title }}"
-      class="w-full lg:w-1/4 aspect-auto object-cover object-center antialiased rounded-md"
+      class="w-full h-72 lg:h-48 lg:w-1/5 aspect-auto object-cover object-center antialiased rounded-md"
     />
   {{ else }}
     <div
-      class="w-full lg:w-1/4 aspect-auto object-cover object-center antialiased rounded-md bg-gray-300 flex items-center justify-center"
+      class="w-full h-72 lg:h-48 lg:w-1/5 aspect-auto object-cover object-center antialiased rounded-md bg-gray-300 flex items-center justify-center"
     >
       {{ partial "icons/icon" (dict
         "vendor" "lucide"
