@@ -33,5 +33,33 @@ module:
     - path: "github.com/hugomods/seo/modules/schema"
     - path: "github.com/hugomods/seo/modules/twitter-cards"
 
+  mounts:
+    - source: node_modules/@twemoji/svg
+      target: assets/emojis
+
+    - source: layouts
+      target: layouts
+    - source: data
+      target: data
+    - source: assets
+      target: assets
+    - source: archetypes
+      target: archetypes
 build:
   writeStats: true
+
+markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
+
+  highlight:
+    lineNos: true
+    lineNumbersInTable: false
+    guessSyntax: true
+    style: github-dark
+    tabWidth: 4
+
+enableEmoji: true
+enableRobotsTXT: true

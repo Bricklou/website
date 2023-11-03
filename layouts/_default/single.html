@@ -1,12 +1,12 @@
 {{ define "main" }}
-  <div class="flex flex-col md:flex-row-reverse gap-8 mb-12">
-    <aside class="text-gray-900 w-full md:w-64 relative">
+  <div class="flex flex-col xl:flex-row-reverse gap-8 mb-12">
+    <aside class="text-gray-900 w-full xl:w-64 relative">
       <section
-        class="rounded-md shadow-lg bg-gray-100 px-4 py-4 md:sticky md:top-8"
+        class="rounded-md shadow-lg bg-gray-100 px-4 py-4 xl:sticky xl:top-8"
       >
         <h1 class="text-xl text-teal-600 font-semibold py-2 uppercase">Tags</h1>
         {{- if .Params.tags }}
-          <ul class="flex flex-wrap md:px-1">
+          <ul class="flex flex-wrap xl:px-1">
             {{ range .Params.tags | first 5 }}
               <li class="mr-2 mb-2 p-1">
                 <a
@@ -26,10 +26,10 @@
     </aside>
 
     <article
-      class="rounded-md shadow-lg bg-gray-100 px-2 py-12 md:px-8 text-gray-900 flex-1"
+      class="post rounded-md shadow-lg bg-gray-100 px-2 py-12 xl:px-8 text-gray-900 flex-1 max-w-full min-w-[300px]"
     >
       <header class="mb-10">
-        <div class="mb-4 flex flex-col md:flex-row mx-4 flex-1">
+        <div class="mb-4 flex flex-col xl:flex-row mx-4 flex-1">
           <h1 class="text-4xl font-bold mb-4 flex-1">{{ .Title }}</h1>
 
           <div class="text-sm text-gray-700 text-right mt-4">
@@ -53,7 +53,7 @@
       </header>
 
       {{ with .Params.featured_image }}
-        <figure class="mb-10">
+        <figure class="banner mb-10">
           {{ $img := .image | $.Resources.Get }}
           {{ $img = $img.Resize "x1000 webp picture" }}
 
@@ -81,7 +81,7 @@
 
 
       <div
-        class="my-8 mx-2 prose lg:prose-lg prose-slate max-w-none text-justify prose-headings:text-teal-600"
+        class="my-8 mx-2 prose xl:prose-lg prose-slate xl:max-w-none text-justify prose-headings:text-teal-600"
       >
         {{ .Content }}
       </div>

@@ -6,3 +6,78 @@
 .hi-svg-inline {
   vertical-align: -0.125rem;
 }
+
+div:not(.zoom-container) {
+  figure {
+    @apply max-w-screen-lg;
+  }
+
+  figure {
+    @apply mb-4 mx-auto container;
+    img {
+      @apply mx-auto aspect-auto antialiased;
+    }
+
+    &.banner img {
+      @apply aspect-auto mx-auto object-cover antialiased w-full h-[32rem];
+    }
+  }
+
+  figcaption {
+    @apply text-center text-gray-700 italic;
+    @apply mt-1 text-sm !important;
+  }
+}
+
+html:has(.zoom-container) {
+  @apply overflow-hidden;
+}
+
+.zoom-container {
+  @apply fixed top-0 left-0 w-screen h-screen z-50;
+  @apply flex items-center justify-center;
+
+  &::before {
+    @apply bg-black bg-opacity-75 absolute inset-0 -z-10 backdrop-blur-sm;
+    content: "";
+  }
+
+  figure {
+    @apply m-auto p-4;
+
+    img {
+      @apply mx-auto max-h-[75vh] aspect-auto object-contain;
+    }
+
+    figcaption {
+      @apply text-center text-gray-100 italic;
+      @apply mt-1 text-sm !important;
+    }
+  }
+}
+
+article .prose {
+  @apply prose-a:text-teal-600 hover:prose-a:text-teal-500 prose-a:no-underline;
+
+  hr {
+    @apply w-48 h-1 mx-auto border-0 rounded bg-teal-700 bg-opacity-50;
+  }
+}
+
+.twemoji {
+  @apply antialiased inline-block w-6 h-6 align-[-0.4em];
+
+  margin: 0 0.05em 0 0.05em;
+}
+
+div.highlight {
+  @apply rounded-lg overflow-hidden;
+
+  pre {
+    @apply mt-0;
+
+    code {
+      @apply grid;
+    }
+  }
+}
