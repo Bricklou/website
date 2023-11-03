@@ -13,6 +13,10 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
+    concurrency:
+      cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.ref }}
+
     permissions:
       contents: read
       packages: write
