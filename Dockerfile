@@ -12,8 +12,7 @@ RUN npm i -g pnpm@8.10.2
 # Build site
 COPY . /src
 RUN pnpm install
-RUN hugo --minify --gc
-COPY ./node_modules/@twemoji/svg /src/public/emojis/
+RUN hugo --minify --gc && cp -r ./node_modules/@twemoji/svg /src/public/emojis/
 # Set the fallback 404 page if defaultContentLanguageInSubdir is enabled, please replace the `en` with your default language code.
 # RUN cp ./public/en/404.html ./public/404.html
 
