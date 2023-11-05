@@ -66,3 +66,4 @@ markup:
 
 enableEmoji: true
 enableRobotsTXT: true
+timeZone: Europe/Paris
