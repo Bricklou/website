@@ -41,22 +41,19 @@
       </p>
     </header>
 
-    {{- if .Params.tags }}
-      <div class="flex flex-row flex-wrap gap-2 my-2 lg:my-0">
-        {{ range .Params.tags | first 5 }}
-          <p class="block p-1">
-            <a
-              href="{{ "tags/" | relLangURL }}{{ . }}"
-              title="{{ . }}"
-              class="tag text-md text-indigo-500 hover:text-indigo-400 font-medium font-mono"
-            >
-              #{{ . }}
-            </a>
-          </p>
-        {{ end }}
-      </div>
-    {{ end }}
-
+    <div class="flex flex-row flex-wrap gap-2 my-2 lg:my-0">
+      {{ range .Params.tags | first 5 }}
+        <p class="block p-1">
+          <a
+            href="{{ "tags/" | relLangURL }}{{ . }}"
+            title="{{ . }}"
+            class="tag text-md text-indigo-500 hover:text-indigo-400 font-medium font-mono"
+          >
+            #{{ . }}
+          </a>
+        </p>
+      {{ end }}
+    </div>
 
     <article class="prose max-w-none text-justify">
       {{ .Summary }}
