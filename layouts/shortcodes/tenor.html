@@ -1,0 +1,15 @@
+<figure>
+  <iframe
+    src="https://tenor.com/embed/{{ .Get "id" }}"
+    width="{{ default 600 (.Get "width") }}"
+    height="{{ default 400 (.Get "height") }}"
+    frameborder="0"
+    name=""
+  ></iframe>
+
+  {{- with.Get "caption" }}
+    <figcaption>
+      {{ . }}
+    </figcaption>
+  {{- end }}
+</figure>

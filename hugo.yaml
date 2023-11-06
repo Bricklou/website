@@ -1,5 +1,4 @@
 baseURL: https://bricklou.ovh/
-languageCode: fr-fr
 title: Bricklou & Co
 
 params:
@@ -17,6 +16,9 @@ menus:
     - name: Posts
       pageRef: /posts
       weight: 20
+    - name: À propos
+      pageRef: /a-propos
+      weight: 30
 
 module:
   imports:
@@ -48,8 +50,6 @@ module:
       target: assets
     - source: archetypes
       target: archetypes
-build:
-  writeStats: true
 
 markup:
   tableOfContents:
@@ -66,4 +66,11 @@ markup:
 
 enableEmoji: true
 enableRobotsTXT: true
-timeZone: Europe/Paris
+removePathAccents: true
+disableKinds: ["taxonomy", "term"]
+cleanDestinationDir: true
+disableFastRender: true
+enableGitInfo: true
+languageCode: fr-fr
+defaultContentLanguage: "fr"
+timeZone: "Europe/Paris"

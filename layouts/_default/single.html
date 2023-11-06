@@ -35,7 +35,7 @@
           <div class="text-sm text-gray-700 text-right mt-4">
             <p class="italic">
               Publié le
-              {{ .Page.PublishDate.Format "02/01/2006" -}}
+              {{ .Page.PublishDate | time.Format "02 January 2006" -}}
             </p>
             <p>
               <span>
@@ -81,7 +81,7 @@
 
 
       <div
-        class="my-8 mx-2 prose xl:prose-lg prose-slate xl:max-w-none text-justify prose-headings:text-teal-600"
+        class="my-8 mx-2 prose xl:prose-lg prose-slate lg:max-w-none text-justify prose-headings:text-teal-600"
       >
         {{ .Content }}
       </div>

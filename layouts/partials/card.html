@@ -37,7 +37,7 @@
 
       <p class="italic text-sm text-gray-700">
         Publié le
-        {{ .Page.PublishDate.Format "02/01/2006" -}}
+        {{ .Page.PublishDate | time.Format "02 January 2006" -}}
       </p>
     </header>
 

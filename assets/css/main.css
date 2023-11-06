@@ -14,7 +14,9 @@ div:not(.zoom-container) {
 
   figure {
     @apply mb-4 mx-auto container;
-    img {
+
+    img,
+    iframe {
       @apply mx-auto aspect-auto antialiased;
     }
 
