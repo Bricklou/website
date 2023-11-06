@@ -67,7 +67,7 @@ markup:
 enableEmoji: true
 enableRobotsTXT: true
 removePathAccents: true
-disableKinds: ["taxonomy", "term"]
+disableKinds: ["taxonomy"]
 cleanDestinationDir: true
 disableFastRender: true
 enableGitInfo: true

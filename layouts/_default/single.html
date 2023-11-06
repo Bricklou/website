@@ -5,10 +5,10 @@
         class="rounded-md shadow-lg bg-gray-100 px-4 py-4 xl:sticky xl:top-8"
       >
         <h1 class="text-xl text-teal-600 font-semibold py-2 uppercase">Tags</h1>
-        <ul class="flex flex-wrap xl:px-1">
+        <ul class="flex flex-wrap xl:px-1 text-sm gap-y-2 gap-x-4">
           {{ if .Params.tags }}
             {{ range .Params.tags | first 5 }}
-              <li class="mr-2 mb-2 p-1">
+              <li>
                 <a
                   href="{{ "tags/" | relLangURL }}{{ . }}"
                   title="{{ . }}"

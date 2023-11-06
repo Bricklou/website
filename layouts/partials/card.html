@@ -1,5 +1,5 @@
 <div
-  class="rounded-md shadow-lg bg-gray-100 px-2 py-4 lg:p-8 mb-8 text-gray-900 flex-1 flex flex-col lg:flex-row gap-4"
+  class="rounded-md shadow-lg bg-gray-100 px-2 py-4 lg:p-8 mb-8 text-gray-900 flex flex-col lg:flex-row gap-4"
 >
   {{ with .Params.featured_image }}
     {{ $img := .image | $.Resources.Get }}
@@ -42,16 +42,18 @@
     </header>
 
     <div class="flex flex-row flex-wrap gap-2 my-2 lg:my-0">
-      {{ range .Params.tags | first 5 }}
-        <p class="block p-1">
-          <a
-            href="{{ "tags/" | relLangURL }}{{ . }}"
-            title="{{ . }}"
-            class="tag text-md text-indigo-500 hover:text-indigo-400 font-medium font-mono"
-          >
-            #{{ . }}
-          </a>
-        </p>
+      {{ if .Params.tags }}
+        {{ range .Params.tags | first 5 }}
+          <p class="block p-1">
+            <a
+              href="{{ "tags/" | relLangURL }}{{ . }}"
+              title="{{ . }}"
+              class="tag text-md text-indigo-500 hover:text-indigo-400 font-medium font-mono"
+            >
+              #{{ . }}
+            </a>
+          </p>
+        {{ end }}
       {{ end }}
     </div>
 

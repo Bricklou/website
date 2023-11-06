@@ -9,7 +9,8 @@ build:
 
 copy:
 	@echo "Copying..."
-	@cp -r node_modules/@twemoji/svg/ public/emojis/
+	@mkdir -p public/assets/emojis
+	@cp -r node_modules/@twemoji/svg/*.svg public/assets/emojis/
 
 serve:
 	@echo "Serving..."
