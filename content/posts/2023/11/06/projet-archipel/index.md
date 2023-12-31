@@ -16,6 +16,8 @@ C'est parti, premier post de ce blog !
 
 Aujourd'hui, nous allons parler d'un projet que j'ai démarré avec une petite équipe de gens passionnés. Ce projet se nomme **Archipel Project**, il consiste à réimplémenter un serveur Minecraft en Rust sous forme de micro-services.
 
+<!-- more -->
+
 # Introduction
 
 Minecraft est un jeu dans un monde ouvert créé en 2011 par Markus "Notch" Persson et, par la suite, développé par le studio Mojang. Il fait partie de l'un des jeux les plus vendues au monde avec, à ce jour, plus de 238 millions de copies vendues, toute plateforme confondues.
