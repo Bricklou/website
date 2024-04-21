@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  HUGO_BASEURL: https://bricklou.ovh
+  PLAUSIBLE_ENDPOINT: https://plausible.bricklou.ovh
 
 jobs:
   build-and-publish:
@@ -57,4 +60,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            PLAUSIBLE_ENDPOINT=${{ vars.PLAUSIBLE_ENDPOINT }}
+            HUGO_BASEURL=${{ env.HUGO_BASEURL }}
+            PLAUSIBLE_ENDPOINT=${{ env.PLAUSIBLE_ENDPOINT }}
