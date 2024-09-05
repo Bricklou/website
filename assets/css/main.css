@@ -83,3 +83,24 @@ div.highlight {
     }
   }
 }
+
+#TableOfContents {
+  ul,
+  ol {
+    @apply flex flex-col xl:px-2 text-sm gap-y-2 gap-x-4;
+
+    li {
+      @apply list-decimal list-inside marker:text-indigo-500;
+      @apply whitespace-nowrap overflow-hidden text-ellipsis  text-indigo-500 has-[>a:hover]:hover:text-indigo-400;
+
+      a {
+        @apply font-medium;
+      }
+
+      ul,
+      ol {
+        @apply pl-4 pt-2;
+      }
+    }
+  }
+}

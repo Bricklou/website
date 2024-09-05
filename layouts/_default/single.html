@@ -1,28 +1,42 @@
 {{ define "main" }}
   <div class="flex flex-col xl:flex-row-reverse gap-8 mb-12">
     <aside class="text-gray-900 w-full xl:w-64 relative">
-      <section
-        class="rounded-md shadow-lg bg-gray-100 px-4 py-4 xl:sticky xl:top-8"
-      >
-        <h1 class="text-xl text-teal-600 font-semibold py-2 uppercase">Tags</h1>
-        <ul class="flex flex-wrap xl:px-1 text-sm gap-y-2 gap-x-4">
-          {{ if .Params.tags }}
-            {{ range .Params.tags | first 5 }}
-              <li>
-                <a
-                  href="{{ "tags/" | relLangURL }}{{ . }}"
-                  title="{{ . }}"
-                  class="text-indigo-500 hover:text-indigo-400 font-medium font-mono tag"
-                >
-                  #{{ . }}
-                </a>
-              </li>
+      <div class="xl:sticky xl:top-8 flex flex-col gap-4">
+        {{ if and (.Params.toc) (gt .WordCount .Site.Params.toc_min_word_count ) }}
+          <section
+            class="rounded-md shadow-lg bg-gray-100 px-4 py-4 xl:sticky xl:top-8"
+          >
+            <h1 class="text-xl text-teal-600 font-semibold py-2 uppercase">
+              Table des matières
+            </h1>
+            {{ .TableOfContents }}
+          </section>
+        {{ end }}
+
+
+        <section class="rounded-md shadow-lg bg-gray-100 px-4 py-4">
+          <h1 class="text-xl text-teal-600 font-semibold py-2 uppercase">
+            Tags
+          </h1>
+          <ul class="flex flex-wrap xl:px-1 text-sm gap-y-2 gap-x-4">
+            {{ if .Params.tags }}
+              {{ range .Params.tags | first 5 }}
+                <li>
+                  <a
+                    href="{{ "tags/" | relLangURL }}{{ . }}"
+                    title="{{ . }}"
+                    class="text-indigo-500 hover:text-indigo-400 font-medium font-mono tag"
+                  >
+                    #{{ . }}
+                  </a>
+                </li>
+              {{ end }}
+            {{ else }}
+              <li class="mr-2 mb-2">Pas de tag pour ce post</li>
             {{ end }}
-          {{ else }}
-            <li class="mr-2 mb-2">Pas de tag pour ce post</li>
-          {{ end }}
-        </ul>
-      </section>
+          </ul>
+        </section>
+      </div>
     </aside>
 
     <article

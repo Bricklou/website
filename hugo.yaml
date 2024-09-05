@@ -5,6 +5,7 @@ params:
   github_url: https://github.com/bricklou
   plausible_analytics:
     outbound_links: true
+  toc_min_word_count: 500
 
 paginate: 1
 
@@ -55,7 +56,7 @@ markup:
   tableOfContents:
     startLevel: 2
     endLevel: 3
-    ordered: false
+    ordered: true
 
   highlight:
     lineNos: true
