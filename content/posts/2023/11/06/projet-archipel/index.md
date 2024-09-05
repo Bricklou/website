@@ -10,15 +10,16 @@ tags:
   - rust
   - micro-service
   - architecture
+toc: true
 ---
 
 C'est parti, premier post de ce blog !
 
 Aujourd'hui, nous allons parler d'un projet que j'ai démarré avec une petite équipe de gens passionnés. Ce projet se nomme **Archipel Project**, il consiste à réimplémenter un serveur Minecraft en Rust sous forme de micro-services.
 
-<!-- more -->
+<!--more-->
 
-# Introduction
+## Introduction
 
 Minecraft est un jeu dans un monde ouvert créé en 2011 par Markus "Notch" Persson et, par la suite, développé par le studio Mojang. Il fait partie de l'un des jeux les plus vendues au monde avec, à ce jour, plus de 238 millions de copies vendues, toute plateforme confondues.
 
@@ -28,13 +29,13 @@ L'un des principaux attraits à ce jeu est la possibilité d'agir librement et d
 
 Pour en revenir au projet, il fut initié sur un coup de tête (on ne va pas se le cacher 😂). Malgré le succès du jeu, il est loin de fonctionner aux meilleures performances possibles. Beaucoup de personnes se plaignent de la lourdeur et du manque d'optimisation des serveurs Java (mono-threading, grande utilisation de la mémoire, etc.), à tel point que la communauté de modding ont fait leurs propres mods pour corriger cela. C'est donc ici que nous allons intervenir, en tentant de proposer une solution, essayant de pallier ces problèmes, tout en proposant d'autres fonctionnalités.
 
-# Objectif du projet
+## Objectif du projet
 
 Comme cité précédemment, notre objectif est de faire une implémentation complète d'un serveur Minecraft dans le langage Rust. Cette dernière doit pouvoir permettre d'avoir un serveur rapide, sécurisé et surtout simple d'utilisation (au plus possible en tout cas).
 
 Pour compléter tout cela, nous sommes partis sur une architecture micro-service, dispatchant ainsi la logique du jeu dans plusieurs petits services qui communiqueront les uns avec les autres : certains stockeront les données du monde, d'autres exécuteront la logique du jeu, et d'autre s'occuperont de gérer la connexion des joueurs et de son authentification. Cette ultra-modularité aura comme point fort de permettre aux créateurs de serveur de n'utiliser que ce dont ils ont besoins pour leur installation, le tout en restant compatible avec le client officiel !
 
-# Qu'est-ce qu'un micro-service ?
+## Qu'est-ce qu'un micro-service ?
 
 Imaginez que vous développez une ville numérique, où chaque fonctionnalité est un petit bâtiment dédié. Chaque bâtiment s'occupe d'une tâche spécifique et fonctionne de manière autonome tout en contribuant au fonctionnement global de la ville. C'est exactement ce que sont les micro-services dans le domaine du développement informatique.
 
@@ -48,7 +49,7 @@ En résumé, les micro-services réinventent la façon dont les applications son
 
 En reprenant tous les points expliqués précédemment pour les appliquer au projet, chaque entité aura son rôle à jouer dans l'ensemble de l'infrastructure. Un exemple de service que nous aurons à implémenter sera un serveur de stockage du monde, un proxy pour la connexion des joueurs ou même un serveur d'authentification. Chacune de ces parties vont permettre de composer l'infrastructure de notre serveur de jeu.
 
-# Conclusion
+## Conclusion
 
 Nous espérons que vous apprécierez ce projet autant que nous. Nous n'en sommes qu'au début et il nous reste beaucoup à faire dessus. Bien entendu, vous pouvez toujours aller jeter un coup d'œil sur la page du projet et même y contribuer à son développement.
 
