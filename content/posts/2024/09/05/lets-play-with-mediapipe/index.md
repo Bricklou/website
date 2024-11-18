@@ -10,7 +10,6 @@ tags:
   - preact
   - web-components
 toc: true
-draft: true
 ---
 
 Cet avril dernier, quelque temps après la sortie officielle de la mise à jours de [AdonisJS 6](https://adonisjs.com/), j'ai eu l'occasion de travailler sur un projet personnel qui m'a permis de découvrir et d'expérimenter avec [MediaPipe](https://mediapipe.dev/), une bibliothèque open-source de Google pour le traitement de flux multimédia.
