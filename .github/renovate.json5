@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended",
     "docker:enableMajor",
-    ":dependecyDashboard",
+    ":dependencyDashboard",
     ":automergePatch",
     ":semanticCommits",
     ":timezone(Europe/Paris)",
