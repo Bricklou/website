@@ -1,0 +1,39 @@
+{{ $emojis := dict
+  "caution" ":exclamation:"
+  "important" ":information_source:"
+  "note" ":spiral_note_pad:"
+  "tip" ":bulb:"
+  "warning" ":warning:"
+}}
+
+{{ $types := dict
+  "caution" (dict "blockquote" "bg-red-100 text-red-500" "header" "text-red-800 bg-red-300")
+  "important" (dict "blockquote" "bg-cyan-100 text-cyan-800" "header" "text-cyan-800 bg-cyan-400")
+  "note" (dict "blockquote" "bg-blue-200 text-blue-800" "header" "text-blue-800 bg-blue-300")
+  "tip" (dict "blockquote" "bg-green-200 text-green-800" "header" "text-green-800 bg-green-400")
+  "warning" (dict "blockquote" "bg-amber-100 text-amber-800" "header" "text-amber-800 bg-amber-400")
+}}
+
+{{ if eq .Type "alert" }}
+  <blockquote
+    class="not-prose [&_a]:text-teal-600 [&_a]:hover:text-teal-500 rounded-md overflow-hidden my-2 {{ (index $types .AlertType).blockquote }}"
+  >
+    <p
+      class="px-2 mt-0 font-semibold {{ (index $types .AlertType).header }} {{ (index $types .AlertType).header }}"
+    >
+      {{ transform.Emojify (index $emojis .AlertType) }}
+      {{ with .AlertTitle }}
+        {{ . }}
+      {{ else }}
+        {{ or (i18n .AlertType) (title .AlertType) }}
+      {{ end }}
+    </p>
+    <div class="px-2 py-1">
+      {{ .Text }}
+    </div>
+  </blockquote>
+{{ else }}
+  <blockquote>
+    {{ .Text }}
+  </blockquote>
+{{ end }}

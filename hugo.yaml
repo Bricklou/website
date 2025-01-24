@@ -3,11 +3,10 @@ title: Bricklou & Co
 
 params:
   github_url: https://github.com/bricklou
-  plausible_analytics:
-    outbound_links: true
   toc_min_word_count: 500
 
-paginate: 1
+pagination:
+  pagerSize: 1
 
 menus:
   main:
@@ -30,7 +29,6 @@ module:
     - path: "github.com/hugomods/images"
     - path: "github.com/hugomods/mermaid"
     - path: "github.com/hugomods/katex"
-    - path: "github.com/hugomods/plausible-analytics"
     # SEO
     - path: "github.com/hugomods/seo/modules/base"
     - path: "github.com/hugomods/seo/modules/alternatives"

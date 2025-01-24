@@ -10,7 +10,6 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   HUGO_BASEURL: https://bricklou.ovh
-  PLAUSIBLE_ENDPOINT: https://plausible.bricklou.ovh
 
 jobs:
   build-and-publish:
@@ -61,4 +60,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             HUGO_BASEURL=${{ env.HUGO_BASEURL }}
-            PLAUSIBLE_ENDPOINT=${{ env.PLAUSIBLE_ENDPOINT }}

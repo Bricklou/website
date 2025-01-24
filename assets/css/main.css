@@ -1,12 +1,19 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-@import "tailwindcss/variants";
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@utility container {
+  @media (width >= theme(--breakpoint-sm)) {
+    padding-inline: 2rem;
+  }
+}
 
 .hi-svg-inline {
   vertical-align: -0.125rem;
 }
 
+/*
+ * Zoom Containers
+ */
 div:not(.zoom-container) {
   figure {
     @apply max-w-screen-lg;
@@ -21,13 +28,13 @@ div:not(.zoom-container) {
     }
 
     &.banner img {
-      @apply aspect-auto mx-auto object-cover antialiased w-full h-[32rem];
+      @apply aspect-auto mx-auto object-cover antialiased w-full max-w-full max-h-[32rem];
     }
   }
 
   figcaption {
     @apply text-center text-gray-700 italic;
-    @apply mt-1 text-sm !important;
+    @apply mt-1 text-sm;
   }
 }
 
@@ -40,7 +47,7 @@ html:has(.zoom-container) {
   @apply flex items-center justify-center;
 
   &::before {
-    @apply bg-black bg-opacity-75 absolute inset-0 -z-10 backdrop-blur-sm;
+    @apply bg-black/75 absolute inset-0 -z-10 backdrop-blur-sm;
     content: "";
   }
 
@@ -53,25 +60,36 @@ html:has(.zoom-container) {
 
     figcaption {
       @apply text-center text-gray-100 italic;
-      @apply mt-1 text-sm !important;
+      @apply mt-1 text-sm;
     }
   }
 }
 
-article .prose {
-  @apply prose-a:text-teal-600 hover:prose-a:text-teal-500 prose-a:no-underline;
+/*
+ * Prose override
+ */
+@layer utilities {
+  article .prose {
+    @apply prose-a:text-teal-600 hover:prose-a:text-teal-500 prose-a:no-underline;
 
-  hr {
-    @apply w-48 h-1 mx-auto border-0 rounded bg-teal-700 bg-opacity-50;
+    hr {
+      @apply w-48 h-1 mx-auto border-0 rounded bg-teal-700/50;
+    }
   }
 }
 
+/*
+ * Twemoji
+ */
 .twemoji {
   @apply antialiased inline-block w-6 h-6 align-[-0.4em];
 
   margin: 0 0.05em 0 0.05em;
 }
 
+/*
+ * Text hihglight
+ */
 div.highlight {
   @apply rounded-lg overflow-hidden;
 
@@ -84,6 +102,9 @@ div.highlight {
   }
 }
 
+/*
+ * Table of Contents
+ */
 #TableOfContents {
   ul,
   ol {

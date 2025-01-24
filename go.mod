@@ -12,7 +12,6 @@ require (
 	github.com/hugomods/katex v0.3.3 // indirect
 	github.com/hugomods/lucide-icons v0.331.0 // indirect
 	github.com/hugomods/mermaid v0.1.4 // indirect
-	github.com/hugomods/plausible-analytics v0.3.0 // indirect
 	github.com/hugomods/seo/modules/alternatives v0.1.1 // indirect
 	github.com/hugomods/seo/modules/base v0.1.3 // indirect
 	github.com/hugomods/seo/modules/favicons v0.2.2 // indirect

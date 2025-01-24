@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+  default:
+    desc: "Build the site"
+    cmds:
+      - task: build
+
+  build:
+    desc: "Build the site"
+    cmds:
+      - hugo 
+      - mkdir -p public/assets/emojis
+      - cp -r node_modules/@twemoji/svg/*.svg public/assets/emojis/
+
+  serve:
+    desc: "Serve the site"
+    cmds:
+      - hugo server --disableFastRender
