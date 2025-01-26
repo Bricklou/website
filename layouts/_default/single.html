@@ -20,7 +20,7 @@
           </h1>
           <ul class="flex flex-wrap xl:px-1 text-sm gap-y-2 gap-x-4">
             {{ if .Params.tags }}
-              {{ range .Params.tags | first 5 }}
+              {{ range .Params.tags }}
                 <li>
                   <a
                     href="{{ "tags/" | relLangURL }}{{ . }}"
@@ -40,7 +40,7 @@
     </aside>
 
     <article
-      class="post rounded-md shadow-lg bg-gray-100 px-2 py-12 xl:px-8 text-gray-900 flex-1 max-w-full md:max-w-[var(--breakpoint-xl)]  min-w-[300px]"
+      class="post rounded-md shadow-lg bg-gray-100 px-4 py-12 xl:px-8 text-gray-900 flex-1 max-w-full md:max-w-[var(--breakpoint-xl)]  min-w-[300px]"
     >
       <header class="mb-10">
         <div class="mb-4 flex flex-col xl:flex-row mx-4 flex-1">
