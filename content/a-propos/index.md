@@ -7,7 +7,7 @@ Hello ! Je suis Louis Bailleau, aussi connu sous le pseudo _Bricklou_ sur les r�
 
 Je suis un jeune développeur autodidacte étudiant en école d'ingénieur informatique.
 
-J'ai découvert le monde du dev il y a de cela une dizaine d'années (et oui, déjà 😆), et j'ai sans cesse essayé de partager mes passions avec les autres.
+J'ai découvert le monde du dev il y a de cela une quinzaine d'années (et oui, déjà 😆), et j'ai sans cesse essayé de partager mes passions avec les autres.
 
 Cela pouvait être en lien avec Minecraft avec des serveurs de jeu entre amis ; ou même des petits projets de groupe autour d'une idée ; ou simplement discuter autour d'un même sujet, tel que la musique, les séries TV, les mangas ou les animés.
 
