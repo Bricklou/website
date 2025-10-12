@@ -178,7 +178,7 @@ demanderait de réfléchir en amont à l'ordre d'exécution des tâches à effec
 > Attention tout de même, NixOS n'est pas une solution miracle et il est possible de se retrouver dans des situations assez complexes si l'on ne fait pas
 > attention. Il est donc important de bien comprendre les concepts de base avant de se lancer.
 >
-> Un autre point à noter, c'est que NixOS, en plus de ne pas réspecter les standards POSIX sur la structure du système de fichier (impliquant la mise en place
+> Un autre point à noter, c'est que NixOS, en plus de ne pas respecter les standards POSIX sur la structure du système de fichier (impliquant la mise en place
 > de nombreux bricolages pour faire fonctionner certains programmes), demande une quantité de stockage plus importante que des distributions plus classiques.
 
 ## Pourquoi Kubernetes ?
