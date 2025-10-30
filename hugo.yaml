@@ -63,6 +63,12 @@ markup:
     style: github-dark
     tabWidth: 4
 
+  goldmark:
+    extensions:
+      footnote: true
+    renderer:
+      unsafe: true
+
 enableEmoji: true
 enableRobotsTXT: true
 removePathAccents: true

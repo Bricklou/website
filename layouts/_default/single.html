@@ -87,8 +87,8 @@
             title="{{ $caption }}"
           />
 
-          {{ with $.Params.caption }}
-            <figcaption>{{ . }}</figcaption>
+          {{ with $.Params.featured_image.caption }}
+            <figcaption>{{ . | markdownify }}</figcaption>
           {{ end }}
         </figure>
       {{ end }}

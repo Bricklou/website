@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   default:
@@ -9,7 +9,7 @@ tasks:
   build:
     desc: "Build the site"
     cmds:
-      - hugo 
+      - hugo
       - mkdir -p public/assets/emojis
       - cp -r node_modules/@twemoji/svg/*.svg public/assets/emojis/
 
