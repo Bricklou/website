@@ -2,7 +2,7 @@
   "dependencies": {
     "@twemoji/api": "^16.0.1",
     "@twemoji/svg": "^15.0.0",
-    "postcss": "^8.5.6"
+    "postcss": "^8.5.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.3",
