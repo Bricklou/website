@@ -1,13 +1,15 @@
 #####################################################################
 #                            Build Stage                            #
 #####################################################################
-FROM hugomods/hugo:exts AS builder
+FROM ghcr.io/gohugoio/hugo:v0.163.3 AS builder
 # Base URL
 ARG HUGO_BASEURL
 ENV HUGO_BASEURL=${HUGO_BASEURL}
 
+WORKDIR /src
+
 # Build site
-COPY . /src
+COPY --chown=hugo:hugo . /src
 RUN npm install
 RUN hugo --minify --gc && mkdir -p /src/public/assets/emojis/ && cp -r ./node_modules/@twemoji/svg/*.svg /src/public/assets/emojis/
 # Set the fallback 404 page if defaultContentLanguageInSubdir is enabled, please replace the `en` with your default language code.
