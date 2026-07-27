@@ -1,4 +1,0 @@
-trustPolicy: off
-minimumReleaseAge: 0
-allowBuilds:
-  '@parcel/watcher': true

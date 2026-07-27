@@ -69,6 +69,19 @@ markup:
     renderer:
       unsafe: true
 
+security:
+  node:
+    permissions:
+      allowAddons:
+        - postcss
+        - tailwindcss
+      allowWorker:
+        - postcss
+        - tailwindcss
+      allowChildProcess:
+        - postcss
+        - tailwindcss
+
 enableEmoji: true
 enableRobotsTXT: true
 removePathAccents: true
