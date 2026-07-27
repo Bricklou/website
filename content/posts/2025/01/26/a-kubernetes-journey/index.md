@@ -23,7 +23,7 @@ de déploiements continue, de gestion de secrets, etc.
 > [!WARNING]
 >
 > Avant d'aller plus loin, il est important de noter que je ne suis absolument pas un expert et il est fort probable que certaines de mes manières de faire ne
-> soient abssoluments pas optimales ou recommendés. N'hésitez pas à me faire part de vos retours pour m'aider à m'améliorer.
+> soient absolument pas optimales ou recommendés. N'hésitez pas à me faire part de vos retours pour m'aider à m'améliorer.
 
 ## Introduction
 
