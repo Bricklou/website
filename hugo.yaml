@@ -75,6 +75,6 @@ removePathAccents: true
 cleanDestinationDir: true
 disableFastRender: true
 enableGitInfo: true
-languageCode: fr-fr
+locale: fr-fr
 defaultContentLanguage: "fr"
 timeZone: "Europe/Paris"

@@ -1,22 +1,22 @@
 {
   "dependencies": {
-    "@twemoji/api": "^16.0.1",
+    "@twemoji/api": "^17.0.3",
     "@twemoji/svg": "^15.0.0",
-    "postcss": "^8.5.10"
+    "postcss": "^8.5.23"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.3",
-    "@babel/core": "^7.28.4",
-    "@tailwindcss/cli": "^4.1.14",
-    "@tailwindcss/postcss": "^4.1.14",
-    "@tailwindcss/typography": "^0.5.19",
-    "cssnano": "^7.1.1",
-    "cssnano-preset-advanced": "^7.0.9",
+    "@babel/cli": "^8.0.4",
+    "@babel/core": "^8.0.1",
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "cssnano": "^8.0.2",
+    "cssnano-preset-advanced": "^8.0.2",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
-    "prettier": "^3.6.2",
+    "prettier": "^3.9.6",
     "prettier-plugin-go-template": "^0.0.15",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.3.3"
   },
-  "packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd"
+  "packageManager": "pnpm@11.17.0+sha512.cca3cea332ad254bb84145f966d19f4879615210346fc92c79a047f23a0d7b3cca3c3792f0076ba1f1831d277efbcf0a9119b31a9a60eca7fb3d6231f331ef72"
 }
