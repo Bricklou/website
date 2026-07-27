@@ -20,7 +20,7 @@ la manière dont j'ai mis en place mon infrastructure. Néanmoins, j'ai omis un 
 
 <!--more-->
 
-# Introduction
+## Introduction
 
 Dès que l'on souhaite héberger ses propres services depuis son domicile, nous arrivons inévitablement à ce moment crucial où il faut ouvrir les ports de notre
 routeur pour permettre l'accès externe au serveur. J'ai moi-même utilisé cette approche pendant plusieurs années, en gérant les difficultés liées au changement
@@ -34,7 +34,7 @@ sécurité (par la fermeture complète du réseau local) et en éliminant la dé
 > avec NixOS, la gestion avancée des règles de pare-feu avec nftables (au lieu d'IP table), et des considérations pratiques issues de mon expérience
 > personnelle. Je vous invite à aussi lire son travail pour lui donner un peu plus de visibilité.
 
-# L'ancienne approche : le port forwarding
+## L'ancienne approche : le port forwarding
 
 Pendant longtemps, l'accès à mes services depuis l'extérieur reposait sur une méthode classique : quelques règles de redirection de port sur ma box internet,
 pointant directement vers mon cluster k3s à la maison. Ça fonctionne, c'est simple à mettre en place, mais ça a plusieurs inconvénients qui ont fini par me
@@ -44,7 +44,7 @@ sur internet. Mon réseau local devient une cible directe dès qu'un service exp
 DNS dynamique. Et enfin, toute la configuration réseau dépend de ma box, un équipement que je ne maitrise pas totalement et sur lequel je n'ai qu'un contrôle
 limité.
 
-# La nouvelle approche : un VPS en façade
+## La nouvelle approche : un VPS en façade
 
 L'idée est simple : au lieu d'exposer directement ma maison sur internet, je loue un petit VPS chez OVH avec une IP publique fixe, et c'est lui qui devient le
 point d'entrée. Le trafic qui arrive dessus est ensuite relayé vers mon cluster à la maison via un tunnel WireGuard, et plus aucun port n'a besoin d'être ouvert
@@ -74,7 +74,7 @@ fait compromettre ou scanner dans tous les sens, c'est par ailleurs une machine 
 nécessaire de mon réseau local via le tunnel. L'IP publique associée à mon domaine est désormais fixe, plus besoin de DNS dynamique. Et en bonus, ce VPS va
 aussi pouvoir me servir à héberger d'autres services, donc ce n'est pas une ressource dormante.
 
-# Le tunnel WireGuard
+## Le tunnel WireGuard
 
 Il y a en réalité **deux tunnels WireGuard distincts** chez moi, et il vaut mieux bien les différencier. D'un côté, un tunnel **VPN personnel**, pour accéder à
 mon réseau local depuis mon téléphone ou mon laptop en déplacement, qui existait déjà avant la migration vers le VPS. De l'autre, un tunnel de **relais**,
@@ -113,7 +113,7 @@ networking.wireguard.interfaces.wg_vps = {
 > droit de passer". En réalité, ce champ définit une **table de routage** : il indique quelles IPs doivent être routées à travers ce peer. Une mauvaise
 > compréhension de ce champ m'a valu un bon après-midi de dépannage à me demander pourquoi mon serveur n'avait plus accès à internet du tout. 😅
 
-# Le pare-feu côté VPS
+## Le pare-feu côté VPS
 
 Le VPS ne doit laisser passer que le strict nécessaire. Sa configuration nftables ressemble grossièrement à ceci :
 
@@ -137,7 +137,7 @@ le SSH du VPS lui-même écoute sur **2222** — pas vraiment un choix de sécur
 un conflit de port entre les deux machines. Et les ports 80 et 443 ne sont **pas** redirigés directement au niveau du NAT : j'ai une configuration HAProxy qui
 s'en charge, un cran plus haut.
 
-# Le reverse proxy HTTP(S)
+## Le reverse proxy HTTP(S)
 
 Devant le cluster, j'ai mis en place un HAProxy fait le tri entre HTTP et HTTPS :
 
@@ -167,7 +167,7 @@ HAProxy me sert aussi de garde-fou en cas de souci avec mon serveur à la maison
 (400, 403, 408, 500, 502, 503, 504), avec un `deny_status 503` explicite sur les deux frontends. Si le tunnel tombe ou que le serveur à la maison ne répond
 plus, le visiteur tombe sur une page d'erreur *propre* (dans la limite des pages par défaut de HAProxy) plutôt que sur une connexion qui traine ou se coupe brutalement.
 
-# Côté cluster : Cilium et les interfaces réseau
+## Côté cluster : Cilium et les interfaces réseau
 
 Petite parenthèse qui n'a rien à voir avec le sujet principal de cet article, mais qui a un impact direct sur la configuration du tunnel : depuis mon dernier
 post, j'ai migré le CNI de mon cluster de flannel vers [Cilium](https://cilium.io/). Cette migration est majoritairement motivée par des défauts et bugs d'implémentation au niveau
@@ -184,7 +184,7 @@ Sans ça, le trafic entrant par le tunnel WireGuard n'était tout simplement pas
 jusqu'à l'interface, mais repartaient en `RST` immédiatement. Un bon moment de capture de paquets avec `tcpdump` a été nécessaire pour comprendre que Cilium
 ignorait purement et simplement les paquets provenant d'une interface qu'il ne surveillait pas.
 
-# État actuel et reproductibilité
+## État actuel et reproductibilité
 
 Contrairement au reste de mon infrastructure qui est gérée en NixOS et déployée via Flux, le VPS tourne sous **Debian**, une machine "classique" que je ne
 voulais pas intégrer à mes Flakes Nix. Pour assurer sa reproductibilité, j'ai introduit un provisioning entier via un playbook **Ansible**, qui installe et
@@ -194,13 +194,13 @@ machine de zéro en quelques minutes si besoin.
 J'ai également ajouté quelques scripts pour simplifier l'ajout de nouveaux pairs WireGuard (typiquement pour un nouveau téléphone ou ordinateur), avec génération automatique
 d'un QR code à scanner.
 
-# Limites connues
+## Limites connues
 
 Cette configuration n'est pas exempte de dette technique. Notamment, le script de démarrage du tunnel WireGuard sur le VPS crée sa propre règle de masquerade
 via `ip nat`, en plus de celle déjà définie dans la configuration nftables — deux tables différentes qui cohabitent sans se marcher dessus pour l'instant, mais
 que je devrais unifier un jour, dans la mesure où ça touche à la seule route d'entrée vers mon réseau local.
 
-# Conclusion
+## Conclusion
 
 Cette migration du port forwarding vers une VPS en façade a réglé la plupart des problèmes qui me dérangeaient dans mon ancienne configuration : plus de ports
 ouverts sur ma box, une IP publique fixe et jetable, et un réseau local qui reste fermé même en cas de compromission de la façade. Le tunnel WireGuard, une fois
