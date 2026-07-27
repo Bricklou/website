@@ -1,0 +1,18 @@
+{{- if .Store.Get "hasMermaid" }}
+  <script type="module">
+    import mermaid from "{{ .Site.Params.mermaid.js_url }}";
+
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: {
+        primaryColor: "#0d9488",
+        primaryTextColor: "#f0fdfa",
+        primaryBorderColor: "#0f766e",
+        lineColor: "#134e4a",
+        secondaryColor: "#99f6e4",
+        tertiaryColor: "#f0fdfa",
+      },
+    });
+  </script>
+{{- end -}}

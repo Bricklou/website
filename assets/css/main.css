@@ -77,7 +77,19 @@ html:has(.zoom-container) {
     }
 
     pre.mermaid {
-      @apply bg-[unset] justify-items-center;
+      @apply bg-[unset] grid justify-items-center;
+
+      .cluster rect {
+        @apply [rx:8px] [ry:8px];
+      }
+
+      .edgeLabel {
+        @apply text-teal-900;
+
+        p {
+          @apply text-teal-900;
+        }
+      }
     }
   }
 }
